@@ -98,7 +98,7 @@ def main(target_file_path: str) -> NoReturn:
 
 if __name__ == '__main__':
     # 保存数据文件路径
-    target_file_path = r'results1.json'
+    target_file_path = r'results.json'
     # 初始化已保存数量
     result_count = 0
     # for _ in range(1, 11):

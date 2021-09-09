@@ -1,4 +1,5 @@
 from write_csv import Csv
+<<<<<<< HEAD
 from typing import Any, TextIO, NoReturn
 import json
 
@@ -44,6 +45,29 @@ def list_clean(data: Any) -> str:
             # 将列表中的每个元素以,分割
             data = ",".join(data)
     return data
+=======
+from typing import Dict, Any, TextIO, NoReturn
+import json
+
+
+def salary_clean(data: Any):
+    if data is None:
+        data = ""
+    res = data.replace('k', '')
+    return res
+
+
+def position_clean(data):
+    pass
+
+
+def skill_clean(data):
+    pass
+
+
+def welfare_clean(data):
+    pass
+>>>>>>> de11ec3901e4523ea71abcf0e0e43f56fc5d9df3
 
 
 def main(file: TextIO, target_file_path: str) -> NoReturn:
@@ -65,6 +89,7 @@ def main(file: TextIO, target_file_path: str) -> NoReturn:
         for key in line_data:
             if key in ('salary',):
                 obj['薪水'] = salary_clean(line_data[key])
+<<<<<<< HEAD
             elif key in ('skillLables', 'positionLables', 'companyLabelList'):
                 if key in ('skillLables',):
                     obj['技能'] = list_clean(line_data[key])
@@ -74,6 +99,16 @@ def main(file: TextIO, target_file_path: str) -> NoReturn:
                     obj['福利'] = list_clean(line_data[key])
             elif key in ('city',):
                 obj['城市'] = line_data[key].strip()
+=======
+            elif key in ('',):
+                pass
+            elif key in ('',):
+                pass
+            elif key in ('',):
+                pass
+            elif key in ('',):
+                pass
+>>>>>>> de11ec3901e4523ea71abcf0e0e43f56fc5d9df3
         # 将处理后的结果装进数组
         results.append(obj)
     # 初始化写入csv类
