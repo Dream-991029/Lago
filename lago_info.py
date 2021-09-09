@@ -101,6 +101,6 @@ if __name__ == '__main__':
     target_file_path = r'results.json'
     # 初始化已保存数量
     result_count = 0
-    # for _ in range(1, 11):
-    # 执行主函数
-    main(target_file_path)
+    for _ in range(1, 11):
+        # 执行主函数
+        main(target_file_path)

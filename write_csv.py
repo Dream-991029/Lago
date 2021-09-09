@@ -1,9 +1,5 @@
 import csv
-<<<<<<< HEAD
 from typing import List, NoReturn
-=======
-from typing import Dict, Tuple, List, Set, NoReturn, Any
->>>>>>> de11ec3901e4523ea71abcf0e0e43f56fc5d9df3
 
 
 class Csv(object):
