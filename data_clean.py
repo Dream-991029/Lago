@@ -13,8 +13,9 @@ def salary_clean(data: Any) -> str:
     if data is None:
         data = ""
     # 去掉字符串中的k和空格
-    res = data.replace('k', '').replace(' ', "")
-    return res
+    data = data.replace('k', '').replace(' ', "")
+    print(data)
+    return data
 
 
 def list_clean(data: Any) -> str:
@@ -33,8 +34,10 @@ def list_clean(data: Any) -> str:
             data = ""
         else:
             for i in data:
+                if i is None:
+                    data = ""
                 # 数据中是否有｜
-                if "｜" in i:
+                elif "｜" in i:
                     info = i.split('｜')
                     for k in info:
                         # 将以｜分割的数据追加到数组中
@@ -42,7 +45,7 @@ def list_clean(data: Any) -> str:
                     # 移除带｜的数据
                     data.remove(i)
             # 将列表中的每个元素以,分割
-            data = ",".join(data)
+            data = "-".join(data)
     return data
 
 

@@ -1,6 +1,8 @@
 import requests
 import json
-from typing import Dict, NoReturn, TextIO
+from write_csv import Csv
+from copy import deepcopy
+from typing import Dict, List, NoReturn, TextIO
 
 
 class LagoInfo(object):
@@ -77,9 +79,7 @@ def main(target_file_path: str) -> NoReturn:
     # 实例化LagoInfo类
     lago = LagoInfo()
     # 初始化cookie
-    cookie = ""
-    # 初始化页码数量
-    page_count = 0
+    cookie = lago.get_cookie()
     # 因为关键词最多返回30页, 所以下面迭代30次
     for i in range(1, 31):
         # 每十个请求重新获取cookie
@@ -87,13 +87,11 @@ def main(target_file_path: str) -> NoReturn:
             # 重置cookie
             cookie = lago.get_cookie()
         # 获取数据
-        results = lago.get_data_json(2, '大数据', cookie)
+        results = lago.get_data_json(i, '大数据', cookie)
         with open(target_file_path, 'a', encoding='utf8') as file:
             # 保存数据
             lago.save_in_json(file, results)
-        # 页码数量自增1
-        page_count += 1
-        print(f'第{page_count}页数据采集完成!')
+        print(f'第{i}页数据采集完成!')
 
 
 if __name__ == '__main__':
@@ -101,6 +99,6 @@ if __name__ == '__main__':
     target_file_path = r'results.json'
     # 初始化已保存数量
     result_count = 0
-    for _ in range(1, 11):
-        # 执行主函数
-        main(target_file_path)
+    # for _ in range(1, 11):
+    # 执行主函数
+    main(target_file_path)

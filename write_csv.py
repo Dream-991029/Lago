@@ -25,7 +25,7 @@ class Csv(object):
             :param count: 计数器
             :return num: 返回最终计数器数量
         """
-        with open(file_path, 'a+', encoding='utf8', newline='') as file:
+        with open(file_path, 'w+', encoding='GBK', newline='') as file:
             f_csv = csv.DictWriter(file, data_list[0].keys())
             # 回退指针到首行
             file.seek(0)
