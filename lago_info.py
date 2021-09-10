@@ -1,8 +1,6 @@
 import requests
 import json
-from write_csv import Csv
-from copy import deepcopy
-from typing import Dict, List, NoReturn, TextIO
+from typing import Dict, NoReturn, TextIO
 
 
 class LagoInfo(object):
@@ -37,16 +35,22 @@ class LagoInfo(object):
         :return: 返回数据字典
         """
         # 请求参数
-        params_data = {
+        form_data = {
             'first': 'true',
             'pn': page,
             'kd': kw
+        }
+        # 获取全国最新数据
+        params_data = {
+            "px": "new",
+            "city": "全国",
+            "needAddtionalResult": "false",
         }
         # 头部添加cookie
         headers = self.headers
         headers['Cookie'] = cookie
         # 发起请求,得到响应数据
-        res = requests.post("https://www.lagou.com/jobs/v2/positionAjax.json?needAddtionalResult=false", data=params_data, headers=headers).json()
+        res = requests.post("https://www.lagou.com/jobs/v2/positionAjax.json?", params=params_data, data=form_data, headers=headers).json()
         return res
 
     def save_in_json(self, file: TextIO, results: Dict) -> NoReturn:
